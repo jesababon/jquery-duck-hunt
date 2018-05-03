@@ -3,16 +3,40 @@ $(function() {
   const $body = $('body');
 
   // 1. Create a <div> with the class "duck" and add it to the body.
- 
+  $('body').append('<div class="duck"></div>');
+
   // 2. Next, use setInterval to toggle the "flap" class on the duck every 250 ms (1/4 second)
- 
+
+  setInterval(function(){
+    $('.duck').toggleClass("flap");
+  }, 250);
+
   // 3. Fantastic!  Now, let's move the duck using CSS "top" and "left". Create
   // a function `moveDuck` that takes a duck object as an argument and sets the
   // "top" and "left" CSS properties.
   // HINT: Use Math.random() * window.innerWidth    for "left"
   //       And Math.random() * window.innerHeight   for "top"
-  
-  // 4. Try making the duck move to a different location every second
+
+    // 4. Try making the duck move to a different location every second
+
+
+  function moveDuck(){
+    const $duck = $('.duck');
+
+
+    $('.duck').animate(1000, function (){
+      let maxLeft = $(window).width()-$duck.width();
+      let maxTop = $(window).height() - $duck.height();
+      let leftPos = Math.floor(Math.random()*(maxLeft + 1));
+      let topPos = Math.floor(Math.random() * (maxTop + 1));
+
+      $duck.css({left: leftPos, top: topPos}).animate(1000);
+    });
+  }
+
+  // moveDuck();
+  // setInterval(moveDuck, 1000);
+
  
   // 5. Congratulations! Move on to part 2!
 
@@ -22,8 +46,16 @@ $(function() {
   //    a "function" called createDuck() that does everything in 1-4
   //    and "returns" the duck object
 
+  function createDuck() {
+    moveDuck();
+    setInterval(moveDuck, 1000);
+  }
+
+  // createDuck();
+
   // 7. Now, let's create lots of ducks!  Use a "for" loop to create 5 ducks
   //    using our fancy new createDuck() function
+
 
 
   // 8. Uh oh, our ducks are overlapping.  Modify createDuck so each time
