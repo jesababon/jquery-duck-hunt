@@ -26,12 +26,24 @@ $(function () {
 
       let left = Math.random() * window.innerWidth;
       let top = Math.random() * window.innerHeight;
-
-      //set duck starting position
       $('.duck').css({
         left: left,
         top: top,
       });
+
+
+      function randomPosition(){
+        $('.duck').each(function(){
+          $(this).css({
+            'top': Math.random()*window.innerHeight,
+            'left': Math.random()*window.innerWidth,
+          });
+        });
+
+      } randomPosition();
+
+      //set duck starting position
+      
 
       // if(Math.random() > 0.5){
       //   $('.duck').removeClass('shot').show().addClass('left');
@@ -55,8 +67,9 @@ $(function () {
   function createDuck() {
     //moved duck creation here
     $('body').append('<div class="duck"></div>');
+    $('.body').css('position', 'relative');
     //moved moveDuck function here
-    setInterval(moveDuck());} //had to set moveDuck intervals as a callback
+    setInterval(moveDuck, 1000);} //had to set moveDuck intervals as a callback
   
   // 7. Now, let's create lots of ducks!  Use a "for" loop to create 5 ducks
   //    using our fancy new createDuck() function
